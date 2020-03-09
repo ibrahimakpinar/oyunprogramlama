@@ -10,14 +10,7 @@ cc.Class({
             default: null,
             type: cc.Label
         },
-        jumpHeight: 10,
-        // main character's jump duration
-        jumpDuration: 1,
-        // maximal movement speed
-        maxMoveSpeed: 10,
-        // acceleration
-        accel: 0,
- 
+     
         up : false,
         down : false,
         left : false,
@@ -27,8 +20,9 @@ cc.Class({
         
     },
     start :function(){
+        //Acces labelCocos
         var label = this.node.getChildByName('labelCocos').getComponent(cc.Label);
-        
+
     },
     // use this for initialization
     onLoad: function () {
@@ -38,9 +32,9 @@ cc.Class({
         this.rightUp = cc.v2(cc.winSize.width/2 - this.labelCocos.node.width/2,cc.winSize.height/2-this.labelCocos.node.height/2);
         this.rigthDown = cc.v2(cc.winSize.width/2 - this.labelCocos.node.width/2,-cc.winSize.height/2+this.labelCocos.node.height/2);
         this.leftDown = cc.v2(-cc.winSize.width/2 + this.labelCocos.node.width/2,-cc.winSize.height/2+this.labelCocos.node.height/2);
-        
-        this.initLabelStartPosition();
 
+        this.initLabelStartPosition();
+        
         this.node.on('touchend', function (event) {
              var pos = this.node.convertToNodeSpaceAR(event.touch.getLocation())   
         },this);
