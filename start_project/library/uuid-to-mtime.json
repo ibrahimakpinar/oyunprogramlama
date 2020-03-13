@@ -125,8 +125,8 @@
     "relativePath": "scenes"
   },
   "44c4d31c-cabd-497b-9050-56b7509823ac": {
-    "asset": 1584122962126,
-    "meta": 1584122962137,
+    "asset": 1584126102112,
+    "meta": 1584126102121,
     "relativePath": "scenes/game.fire"
   },
   "feacfaae-5900-4ede-83c0-004497abdde4": {
@@ -530,13 +530,13 @@
     "relativePath": "model/primitives.fbx"
   },
   "47381a39-2c5f-4c7b-a91f-e1a85d9729f3": {
-    "asset": 1584121666655,
-    "meta": 1584122936979,
+    "asset": 1584125896484,
+    "meta": 1584125899990,
     "relativePath": "scripts/Game.js"
   },
   "ef32658c-d6a1-450f-8b3f-ce87079227ad": {
-    "asset": 1584122758433,
-    "meta": 1584122936980,
+    "asset": 1584125891749,
+    "meta": 1584125899990,
     "relativePath": "scripts/Star.js"
   }
 }

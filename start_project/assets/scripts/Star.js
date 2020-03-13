@@ -12,6 +12,11 @@ cc.Class({
             this.onPicked();
             return;
         }
+
+        var opacityRatio = 1 - this.game.timer/this.game.starDuration;
+        var minOpacity = 50;
+        this.node.opacity = minOpacity + Math.floor(opacityRatio * (255 - minOpacity));
+        
     },
     // Get Player Distance
     getPlayerDistance: function () {
@@ -25,6 +30,8 @@ cc.Class({
     onPicked: function() {
         // When the stars are being collected, invoke the interface in the Game script to generate a new star
         this.game.spawnNewStar();
+        //Set New Score
+        this.game.gainScore();
         // then destroy the current star's node
         this.node.destroy();
     },

@@ -46,6 +46,10 @@ cc.Class({
 
     onLoad: function () {
 
+        this.timer = 0;
+
+        this.starDuration = 0;
+
         this.score = 0;
         // obtain the anchor point of ground level on the y axis
         this.groundY = this.ground.y + this.ground.height/2; // this.ground.top may also work
@@ -62,6 +66,10 @@ cc.Class({
         newStar.setPosition(this.getNewStarPosition());
         //Bind this 
         newStar.getComponent('Star').game = this;
+          // reset timer, randomly choose a value according the scale of star duration
+        this.starDuration = this.minStarDuration + Math.random() * (this.maxStarDuration - this.minStarDuration);
+        
+        this.timer = 0;
     },
 
     getNewStarPosition: function () {
@@ -73,6 +81,24 @@ cc.Class({
         randX = (Math.random() - 0.5) * 2 * maxX;
         // return to the anchor point of the star
         return cc.v2(randX, randY);
+    },
+
+    gainScore : function(){
+        this.score += 1;
+        //Return if null
+        if(this.scoreDisplay === null) return;
+
+        this.scoreDisplay.string = "Score : "+ this.score;
+    },
+    update (dt) {
+        if (this.timer > this.starDuration) {
+            this.gameOver();
+            return;
+        }
+        this.timer += dt;
+    },
+    gameOver: function () {
+        this.player.stopAllActions(); //stop the jumping action of the player node
+        cc.director.loadScene('game');
     }
-    // update (dt) {},
 });
