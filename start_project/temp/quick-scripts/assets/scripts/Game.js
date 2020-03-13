@@ -65,7 +65,7 @@ cc.Class({
         this.node.addChild(newStar);
         // set up a random position for the star
         newStar.setPosition(this.getNewStarPosition());
-
+        //Bind this 
         newStar.getComponent('Star').game = this;
     },
 
