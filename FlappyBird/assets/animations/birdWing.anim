@@ -1,0 +1,37 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "birdWing",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 1.5166666666666666,
+  "sample": 60,
+  "speed": 20,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "5e886471-88a9-4a0e-9b38-90e5144661ce"
+            }
+          },
+          {
+            "frame": 0.4,
+            "value": {
+              "__uuid__": "d9d30b7b-f670-469e-b8d3-c5a580f3cb43"
+            }
+          },
+          {
+            "frame": 1.5,
+            "value": {
+              "__uuid__": "09482a17-2424-4d29-abc4-095c58f1e807"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}
