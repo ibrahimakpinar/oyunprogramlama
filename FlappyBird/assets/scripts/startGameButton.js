@@ -9,12 +9,31 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        
+        swooshingAudio:{
+            default: null,
+            url : cc.AudioClip
+        },
+        maskedLayer: {
+            default : null,
+            type : cc.Node
+        }        
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     startGame(){
-        cc.director.loadScene('game');
+        cc.audioEngine.playEffect(this.swooshingAudio);
+
+        this.maskedLayer.active = true;
+        this.maskedLayer.opacity = 122;
+        this.maskedLayer.color = cc.Color.BLACK;
+
+        var seq = cc.sequence(
+            cc.fadeIn(0.2),cc.callFunc(()=>{
+                cc.director.loadScene('game');
+            },this)
+        );
+
+        this.maskedLayer.runAction(seq);
     }
 });
