@@ -15,11 +15,11 @@ cc.Class({
           type:cc.Node
       }
     },
-
     // LIFE-CYCLE CALLBACKS:
-
     onLoad () {
+        this._enableInput(true);
         this._registerInput();
+        this.bird.init();
         //Score
 
     },
@@ -46,18 +46,42 @@ cc.Class({
          },this.node);
     },
 
+    _enableInput(enable){
+        if(enable){
+            cc.eventManager.resumeTarget(this.node);
+        }else{
+            cc.eventManager.pauseTarget(this.node);
+        }
+        
+    },
+
     _startGameOrJumpBird(){
         if(this.bird.state  === Bird.StateEnum.Ready){
             this._startGame();
         }
         else{
-            this.bird._rise();
+            this.bird.rise();
         }
     },
+
     _startGame(){
         this.bird.state = Bird.StateEnum.Rise;//1
-    }
+        this._hideReadyMenu();
+        this.bird.startFly();
+        //fly bird
+        //pipe spawn
+    },
+    _hideReadyMenu(){
+        this.readyMenu.runAction(
+            cc.fadeOut(0.5),
+            cc.callFunc(()=>{
+                this.readyMenu.active = false;
+            },this)
+        );
+    },
 
 
-    // update (dt) {},
+    update (dt) {
+        
+    },
 });
