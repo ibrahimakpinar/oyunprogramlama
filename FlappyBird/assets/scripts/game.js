@@ -13,6 +13,10 @@ cc.Class({
       readyMenu : {
           default : null,
           type:cc.Node
+      },
+      maskLayer: {
+        default : null,
+        type : cc.Node
       }
     },
     // LIFE-CYCLE CALLBACKS:
@@ -20,6 +24,7 @@ cc.Class({
         this._enableInput(true);
         this._registerInput();
         this.bird.init();
+        this._revealScene();
         //Score
 
     },
@@ -29,7 +34,7 @@ cc.Class({
     },
 
     _registerInput(){
-        
+        // device
         cc.eventManager.addListener({
             event : cc.EventListener.KEYBOARD,
             onKeyPressed : function(keyCode,event){
@@ -80,7 +85,11 @@ cc.Class({
         );
     },
 
-
+    _revealScene(){
+        this.maskLayer.active = true;
+        this.maskLayer.color = cc.Color.BLACK;
+        this.maskLayer.runAction(cc.fadeOut(0.3));
+    },
     update (dt) {
         
     },

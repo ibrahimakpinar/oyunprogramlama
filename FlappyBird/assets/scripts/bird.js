@@ -48,15 +48,20 @@ cc.Class({
         this._updatePosition(dt);
     },
     _updatePosition(dt){
-        this.node.y += dt * this.currentSpeed;
-        this.currentSpeed -= dt *this.gravity;
+        var flying = this.state === StateEnum.Rise || this.state === StateEnum.FreeFall || this.state === Drop;
+        if(flying){
+            this.node.y += dt * this.currentSpeed;
+            this.currentSpeed -= dt *this.gravity;
+        }
     },
 
     rise(){
         this.state = StateEnum.Rise;
-        this._runRiseAction();    
+        //this.state = StateEnum.Ready;
         cc.audioEngine.playEffect(this.riseAudio);
-        //rise
+        this._runRiseAction();    
+        this.currentSpeed = this.initRiseSpeed;
+
         //audio
     },
     _runRiseAction(){
