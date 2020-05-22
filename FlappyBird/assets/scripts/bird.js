@@ -46,13 +46,31 @@ cc.Class({
             return;
         }
         this._updatePosition(dt);
+        this._updateState(dt);
     },
     _updatePosition(dt){
         var flying = this.state === StateEnum.Rise || this.state === StateEnum.FreeFall || this.state === Drop;
         if(flying){
             this.node.y += dt * this.currentSpeed;
             this.currentSpeed -= dt *this.gravity;
+            cc.log(this.node.y);
         }
+    },
+    _updateState(dt){
+
+        switch (this.state) {
+            case StateEnum.Rise:
+                if(this.currentSpeed < 0){
+                    this.state = StateEnum.FreeFall;
+                    this._runFallAction(0.5);
+                }
+                break;
+        
+            default:
+                break;
+        }
+
+
     },
 
     rise(){
@@ -73,8 +91,8 @@ cc.Class({
 
     _runFallAction(duration){
         this.node.stopAllActions();
-        let dropAction = cc.rotateTo(duration,90).easing(cc.easeCubicActionIn());
-        this.node.runAction(dropAction);
+        let fallAction = cc.rotateTo(duration,90).easing(cc.easeCubicActionIn());
+        this.node.runAction(fallAction);
 
     },
     startFly(){

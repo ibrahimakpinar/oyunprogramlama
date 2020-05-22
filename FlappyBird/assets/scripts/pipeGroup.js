@@ -28,10 +28,19 @@ cc.Class({
         this._initPositionY();
     },
     _initPositionX(){
-        //random x 
+        let visibleSize = cc.winSize;
+        let screenLeft = -visibleSize.width / 2;
+        let screenRight = visibleSize.width / 2;
+        this.node.x = screenRight + 300;
+        this.recycleX = screenLeft  - Math.max(this.topPipe.width,this.bottomPipe.width);
     },
     _initPositionY(){
-        // random y
+        let visibleSize = cc.winSize;
+        let topPipeMaxY = visibleSize.height/2 - this.topPipeMinHeight;
+        let bottomPipeMinY = cc.find("Canvas/ground").y + this.bottomPipeMinHeight;
+        let spacing = this.spacingMinValue + Math.random() * (this.spacingMaxValue - this.spacingMinValue);
+        this.topPipe.y = topPipeMaxY - Math.random() * (topPipeMaxY-bottomPipeMinY-spacing);
+        this.bottomPipe.y = this.topPipe.y - spacing;
     },
 
     start () {
