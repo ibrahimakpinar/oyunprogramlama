@@ -38,14 +38,20 @@ cc.Class({
         let visibleSize = cc.winSize;
         let topPipeMaxY = visibleSize.height/2 - this.topPipeMinHeight;
         let bottomPipeMinY = cc.find("Canvas/ground").y + this.bottomPipeMinHeight;
-        let spacing = this.spacingMinValue + Math.random() * (this.spacingMaxValue - this.spacingMinValue);
+        let spacing = this.spacingMinValue + Math.random() * (this.spacingMaxValue - this.spacingMinValue);//300-250
         this.topPipe.y = topPipeMaxY - Math.random() * (topPipeMaxY-bottomPipeMinY-spacing);
         this.bottomPipe.y = this.topPipe.y - spacing;
     },
 
-    start () {
+    update (dt) {
+        if(!this.pipeManager.isStarted){
+            return;
+        }
 
+        this.node.x += this.pipeManager.pipeMoveSpeed * dt;
+
+        if(this.node.x < this.recycleX){
+            this.pipeManager.recyclePipe(this);
+        }
     },
-
-    // update (dt) {},
 });

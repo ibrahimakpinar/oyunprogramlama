@@ -25,6 +25,9 @@ cc.Class({
     start () {
 
     },
+    stopScroll(){
+        this.canScroll = false;
+    },
 
     update (dt) {
         if(!this.canScroll) return;
